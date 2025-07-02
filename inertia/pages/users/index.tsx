@@ -1,6 +1,6 @@
 import { Head } from "@inertiajs/react";
-import { useEffect } from "react";
-export default function Users({ users}) {
+import User from "#models/user";
+export default function Users({ users }: { users: User[] }) {
 
 
   
