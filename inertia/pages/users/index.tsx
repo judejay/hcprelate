@@ -1,22 +1,10 @@
 import { Head } from "@inertiajs/react";
 import { useEffect } from "react";
-export default function Users() {
+export default function Users({ users}) {
 
-  const getUsers =  () =>  {
-    fetch('/api/users')
-      .then(response => response.json())  
-      .then(data => {
-        console.log(data);
-      })
-      .catch(error => {
-        console.error('Error fetching users:', error);
-      });
-  }
 
-  // Call the function to fetch users when the component mounts
-  useEffect(() => {
-    getUsers();
-  }, []);
+  
+
 
   return (
     <>
@@ -26,9 +14,17 @@ export default function Users() {
         <p className="mb-4">
           This is the users page. You can manage your users here.
         </p>
-        <p>
-          More features will be added soon!
-        </p>
+        {          users && users.length > 0 ? (
+          <ul className="list-disc pl-5">
+            {users.map((user) => (
+              <li key={user.id} className="mb-2">
+                <strong>{user.name}</strong> - {user.email}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-gray-500">No users found.</p>
+        )}
       </div>
     </>
   );
