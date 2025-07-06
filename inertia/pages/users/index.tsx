@@ -1,11 +1,6 @@
 import { Head } from "@inertiajs/react";
 import User from "#models/user";
 export default function Users({ users }: { users: User[] }) {
-
-
-  
-
-
   return (
     <>
         <Head title="Users" />

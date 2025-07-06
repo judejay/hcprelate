@@ -31,7 +31,13 @@ export default class UsersController {
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
+  async show({ inertia, params }: HttpContext) {
+    // Fetch the user by ID from the database
+    const user = await User.findOrFail(params.id)
+    // Render the user details page with the fetched user data
+    return inertia.render('users/show', { user })
+    // return { message: `Showing details for user with ID ${params.id}` }
+  }
 
   /**
    * Edit individual record
