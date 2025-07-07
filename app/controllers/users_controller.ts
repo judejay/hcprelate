@@ -1,4 +1,5 @@
 import User from '#models/user'
+import Contact from '#models/contact'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class UsersController {
@@ -34,8 +35,11 @@ export default class UsersController {
   async show({ inertia, params }: HttpContext) {
     // Fetch the user by ID from the database
     const user = await User.findOrFail(params.id)
+    // If you want to fetch related contacts, you can do so
+    const contacts = await Contact.query().where('user_id', user.id) // Replace 'contact' with the correct relationship name
+
     // Render the user details page with the fetched user data
-    return inertia.render('users/show', { user })
+    return inertia.render('users/show', { user, contacts })
     // return { message: `Showing details for user with ID ${params.id}` }
   }
 

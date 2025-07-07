@@ -10,7 +10,6 @@ export default class extends BaseSchema {
       table.string('email', 255).notNullable().unique()
       table.timestamp('created_at')
       table.timestamp('updated_at')
-      table.text('friends')
     })
   }
 

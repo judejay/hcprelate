@@ -1,5 +1,4 @@
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
-//import Database from '@ioc:Adonis/Lucid/Database'
 import User from '#models/user'
 export default class extends BaseSeeder {
   async run() {
@@ -9,7 +8,6 @@ export default class extends BaseSeeder {
     const users = Array.from({ length: numberOfUsers }, (_, index) => ({
       name: `User ${index + 1}`,
       email: `user${index + 1 + 'email.com'}`,
-      friends: '2',
     }))
 
     await User.createMany(users)

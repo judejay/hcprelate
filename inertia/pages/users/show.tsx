@@ -1,7 +1,9 @@
 import { Head } from "@inertiajs/react";
 import User from "#models/user";    
+import Contact from "#models/contact";
 
-export default function UserShow({ user }: { user: User }) {
+export default function UserShow({ user, contacts }: { user: User; contacts: Contact[] }) {
+   
   return (
     <>
       <Head title={`User: ${user.name}`} />
@@ -13,7 +15,24 @@ export default function UserShow({ user }: { user: User }) {
         <ul className="list-disc pl-5">
           <li><strong>Email:</strong> {user.email}</li>
         </ul>
+        <div className="mt-6">
+            {contacts && contacts.length > 0 ? (
+                contacts.map((friend) => (
+                    <div key={friend.id} className="mb-4">
+                        <h2 className="text-xl font-semibold">{friend.name}</h2>
+                    </div>
+                ))
+            ) : (
+                <div>   
+                    
+                    <p className="text-gray-500">No contacts found for this user.</p>
+
       </div>
-    </>
+            )}
+        </div>
+
+        </div>
   );
+    </>
+    );
 }

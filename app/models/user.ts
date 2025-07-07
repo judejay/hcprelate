@@ -24,8 +24,6 @@ export default class User extends BaseModel {
   @column()
   declare isActive: boolean
   @column()
-  declare friends: string
-  @column()
   declare profilePicture: string
   @column()
   declare bio: string
